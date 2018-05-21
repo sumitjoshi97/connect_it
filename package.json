@@ -1,0 +1,24 @@
+{
+  "name": "connect",
+  "version": "1.0.0",
+  "description": "social network made from node and react",
+  "main": "index.js",
+  "author": "Sj",
+  "license": "MIT",
+  "private": null,
+
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.1.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.2.0"
+  }
+}
