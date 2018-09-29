@@ -1,0 +1,3 @@
+export const GET_ERRORS = 'GET_ERRORS'
+export const REGISTER_USER = 'REGISTER_USER'
+export const SET_CURENT_USER = 'SET_CURENT_USER'
