@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import { connect } from 'react-redux'
+import {withRouter} from 'react-router-dom'
+// import redux actions
+import * as actions from '../../../store/actions/index'
+
 export class Register extends Component {
   state = {
     name: '',
@@ -26,10 +31,13 @@ export class Register extends Component {
       password2: this.state.password2
     }
 
-    axios
-      .post('/api/users/register', newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }))
+    this.props.onRegisterUser(newUser, this.props.history)
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.errors !== prevState.errors) {
+      return { errors: nextProps.errors }
+    } else return null
   }
 
   render() {
@@ -119,4 +127,19 @@ export class Register extends Component {
   }
 }
 
-export default Register
+Register.propTypes = {
+  onRegisterUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  user: state.auth.user,
+  errors: state.errors.errors
+})
+
+const mapDispatchToProps = dispatch => ({
+  onRegisterUser: user => dispatch(actions.registerUser(user))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Register))
