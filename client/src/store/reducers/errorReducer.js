@@ -4,7 +4,7 @@ const initialState = {
   errors: {}
 }
 
-const errorReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_ERRORS:
       return { ...state, errors: action.err }
@@ -13,5 +13,3 @@ const errorReducer = (state = initialState, action) => {
       return state
   }
 }
-
-export default errorReducer
