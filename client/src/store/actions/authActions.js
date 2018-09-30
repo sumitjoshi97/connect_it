@@ -18,13 +18,17 @@ export const registerUser = (data, history) => dispatch => {
   axios
     .post('/api/users/register', data)
     .then(res => history.push('/login'))
-    .catch(err => dispatch(getErrors(err.response.data)))
+    // .then(res =>console.log(res))
+    .catch(err => {
+      console.log(err)
+      dispatch(getErrors(err.response.data))
+    })
 }
 
 // login get user token
 export const loginUser = data => dispatch => {
   axios
-    .post('/api/users/login', userData)
+    .post('/api/users/login', data)
     .then(res => {
       // get token from response
       const { token } = res.data
@@ -38,7 +42,7 @@ export const loginUser = data => dispatch => {
       // dispatch action to set current user
       dispatch(setCurrentUser(decoded))
     })
-    .catch(err => dispatch(getErrors(err.response.data)))
+    .catch(error => dispatch(getErrors(error.response.data)))
 }
 
 // action to set current user
@@ -46,3 +50,13 @@ export const setCurrentUser = token => ({
   type: actionTypes.SET_CURENT_USER,
   token
 })
+
+//logout user
+export const logoutUser = () => dispatch => {
+  // remove token from localstorage
+  localStorage.removeItem('jwtToken')
+  //remove auth token for future requests
+  setAuthToken(false)
+  //set current user to {} an authenticated to false
+  dispatch(setCurrentUser({}))
+}
