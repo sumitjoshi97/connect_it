@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
-import classnames from 'classnames'
 import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/index'
 import PropTypes from 'prop-types'
+import Input from '../../Common/Input/Input'
 
 export class Login extends Component {
   state = {
     email: '',
     password: '',
     errors: {}
+  }
+
+  componentDidMount() {
+    if (this.props.isAuth) {
+      this.props.history.push('/dashboard')
+    }
   }
 
   onInputChange = e => {
@@ -54,34 +60,23 @@ export class Login extends Component {
                 Sign in to your DevConnector account
               </p>
               <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.email
-                    })}
-                    placeholder="Email Address"
-                    name="email"
-                    onChange={this.onInputChange}
-                  />
-                  {errors.email && (
-                    <div className="invalid-feedback">{errors.email}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.password
-                    })}
-                    placeholder="Password"
-                    name="password"
-                    onChange={this.onInputChange}
-                  />
-                  {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
-                  )}
-                </div>
+                <Input
+                  name="email"
+                  type="email"
+                  placeholder="Email Address"
+                  value={this.state.email}
+                  onChange={this.onInputChange}
+                  error={errors.email}
+                />
+                <Input
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.onInputChange}
+                  error={errors.password}
+                />
+
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
