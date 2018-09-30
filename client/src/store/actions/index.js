@@ -1,3 +1,6 @@
 export {
-    registerUser
+    registerUser,
+    loginUser,
+    setCurrentUser,
+    logoutUser
 } from './authActions'
