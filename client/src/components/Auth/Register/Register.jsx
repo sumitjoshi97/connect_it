@@ -139,7 +139,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onRegisterUser: user => dispatch(actions.registerUser(user))
+  onRegisterUser: (user, history) => dispatch(actions.registerUser(user, history))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Register))
