@@ -1,10 +1,51 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const Header = () => {
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
+import * as actions from '../../../store/actions/index'
+
+const Header = props => {
+  const { user, isAuth, onLogoutUser } = props
+
+  //links for guest accounts - not looged in users
+  const guestLinks = (
+    <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+        <Link className="nav-link" to="/register">
+          Sign Up
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/login">
+          Login
+        </Link>
+      </li>
+    </ul>
+  )
+
+  //navbar links for logged in users
+  const authLinks = (
+    <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+        <a className="nav-link" onClick={onLogoutUser}>
+          <img
+            src={user.avatar}
+            alt={user.name}
+            style={{ width: '25px', height: '25px', marginRight: '5px' }}
+            title="you must have a gravatar connected to your email to display an image"
+          />
+          Logout
+        </a>
+      </li>
+    </ul>
+  )
+
+  // return header component to render
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
       <div className="container">
-        <Link className="navbar-brand" to='/'>
+        <Link className="navbar-brand" to="/">
           DevConnector
         </Link>
         <button
@@ -25,23 +66,27 @@ const Header = () => {
               </Link>
             </li>
           </ul>
-
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">
-                Sign Up
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
-            </li>
-          </ul>
+          {isAuth ? authLinks : guestLinks}
         </div>
       </div>
     </nav>
   )
 }
 
-export default Header
+Header.propTypes = {
+  isAuth: PropTypes.bool.isRequired
+}
+
+const mapStateToProps = state => ({
+  isAuth: state.auth.isAuthenticated,
+  user: state.auth.user
+})
+
+const mapDispatchToProps = dispatch => ({
+  onLogoutUser: () => dispatch(actions.logoutUser())
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header)
