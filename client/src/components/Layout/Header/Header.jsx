@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -10,10 +10,11 @@ class Header extends Component {
     e.preventDefault()
     this.props.onClearCurrentProfile()
     this.props.onLogoutUser()
+    this.props.history.push('/')
   }
 
   render() {
-    const { user, isAuth } = props
+    const { user, isAuth } = this.props
 
     //links for guest accounts - not looged in users
     const guestLinks = (
@@ -82,7 +83,10 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  isAuth: PropTypes.bool.isRequired
+  isAuth: PropTypes.bool.isRequired,
+  user: PropTypes.object,
+  onLogoutUser: PropTypes.func.isRequired,
+  onClearCurrentProfile: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -98,4 +102,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header)
+)(withRouter(Header))
