@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Input from '../Common/Input/Input'
 import InputGroup from '../Common/Input/InputGroup'
 import TextArea from '../Common/Input/TextArea'
 import SelectList from '../Common/Input/SelectList'
+import * as actions from '../../store/actions/index'
 
 class CreateProfile extends Component {
   state = {
@@ -12,7 +14,7 @@ class CreateProfile extends Component {
     handle: '',
     company: '',
     website: '',
-    loaction: '',
+    location: '',
     status: '',
     skills: '',
     githubUsername: '',
@@ -34,7 +36,7 @@ class CreateProfile extends Component {
   onSubmit = e => {
     e.preventDefault()
 
-    const user = {
+    const profileData = {
       handle: this.state.handle,
       company: this.state.company,
       website: this.state.website,
@@ -49,17 +51,16 @@ class CreateProfile extends Component {
       youtube: this.state.youtube,
       instagram: this.state.instagram
     }
-    console.log(user)
-    // this.props.onLogin(user)
+    this.props.onCreateProfile(profileData, this.props.history)
   }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // update errors store if errors props from redux store are different
+    if (nextProps.errors !== prevState.errors) {
+      return { errors: nextProps.errors }
+    } else return null
+  }
 
-      // update errors store if errors props from redux store are different
-      if (nextProps.errors !== prevState.errors) {
-        return { errors: nextProps.errors }
-      } else return null
-    }
   render() {
     const { displaySocialInput, errors } = this.state
 
@@ -86,18 +87,10 @@ class CreateProfile extends Component {
                 <Input
                   name="handle"
                   placeholder="Profile handle *"
-                  value={this.state.value}
+                  value={this.state.handle}
                   onChange={this.onInputChange}
                   error={errors.handle}
                   info="A unique handle for your profile URL"
-                />
-                <Input
-                  name="email"
-                  type="email"
-                  placeholder="Email Address"
-                  value={this.state.email}
-                  onChange={this.onInputChange}
-                  error={errors.email}
                 />
                 <SelectList
                   name="status"
@@ -196,6 +189,8 @@ class CreateProfile extends Component {
                     />
                   </Fragment>
                 )}
+
+                <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
           </div>
@@ -206,8 +201,9 @@ class CreateProfile extends Component {
 }
 
 CreateProfile.propTypes = {
-  profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  profile: PropTypes.object,
+  // errors: PropTypes.object.isRequired,
+  onCreateProfile: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -215,9 +211,12 @@ const mapStateToProps = state => ({
   errors: state.errors.errors
 })
 
-const mapDispatchToProps = state => ({})
+const mapDispatchToProps = dispatch => ({
+  onCreateProfile: (profile, history) =>
+    dispatch(actions.createProfile(profile, history))
+})
 
 export default connect(
-  mapStateToProps
-//   mapDispatchToProps
-)(CreateProfile)
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(CreateProfile))
