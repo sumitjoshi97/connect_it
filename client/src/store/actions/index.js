@@ -2,10 +2,13 @@ export {
     registerUser,
     loginUser,
     setCurrentUser,
-    logoutUser
+    logoutUser,
+    getErrors
 } from './authActions'
 
 export {
     getCurrentProfile,
-    clearCurrentProfile
+    clearCurrentProfile,
+    createProfile,
+    deleteProfile
 } from './profileActions'
