@@ -11,6 +11,7 @@ import Register from './components/Auth/Register/Register'
 import Login from './components/Auth/Login/Login'
 import setAuthToken from './store/utils/setAuthToken'
 import * as actions from './store/actions/authActions'
+import Dashboard from './components/Dashboard/Dashboard'
 
 // app component
 class App extends Component {
@@ -23,6 +24,17 @@ class App extends Component {
       const decoded = jwt_decode(localStorage.jwtToken)
       // set user and isAuth
       this.props.onSetCurrentUser(decoded)
+
+      // check for expired token
+      const currentTime = Date.now() / 1000
+      if (decoded.exp < currentTime) {
+        // logout user
+        this.props.onLogoutUser()
+        //clear current profile
+
+        //redirect to logins
+        window.location.href = '/login'
+      }
     }
   }
   render() {
@@ -32,6 +44,7 @@ class App extends Component {
           <Header />
           <Route path="/" exact component={Landing} />
           <div className="container">
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
           </div>
@@ -43,8 +56,12 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSetCurrentUser: (user) => dispatch(actions.setCurrentUser(user))
+  onSetCurrentUser: user => dispatch(actions.setCurrentUser(user)),
+  onLogoutUser: () => dispatch(actions.loginUser),
+  onClearCurrentProfile: () => dispatch(actions.clearCurrentProfile())
 })
+
+// export app wrapped in redux store
 export default connect(
   null,
   mapDispatchToProps
