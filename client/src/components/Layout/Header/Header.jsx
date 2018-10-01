@@ -1,76 +1,84 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import * as actions from '../../../store/actions/index'
 
-const Header = props => {
-  const { user, isAuth, onLogoutUser } = props
+class Header extends Component {
+  onLogoutClick = e => {
+    e.preventDefault()
+    this.props.onClearCurrentProfile()
+    this.props.onLogoutUser()
+  }
 
-  //links for guest accounts - not looged in users
-  const guestLinks = (
-    <ul className="navbar-nav ml-auto">
-      <li className="nav-item">
-        <Link className="nav-link" to="/register">
-          Sign Up
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/login">
-          Login
-        </Link>
-      </li>
-    </ul>
-  )
+  render() {
+    const { user, isAuth } = props
 
-  //navbar links for logged in users
-  const authLinks = (
-    <ul className="navbar-nav ml-auto">
-      <li className="nav-item">
-        <a className="nav-link" onClick={onLogoutUser}>
-          <img
-            src={user.avatar}
-            alt={user.name}
-            style={{ width: '25px', height: '25px', marginRight: '5px' }}
-            title="you must have a gravatar connected to your email to display an image"
-          />
-          Logout
-        </a>
-      </li>
-    </ul>
-  )
+    //links for guest accounts - not looged in users
+    const guestLinks = (
+      <ul className="navbar-nav ml-auto">
+        <li className="nav-item">
+          <Link className="nav-link" to="/register">
+            Sign Up
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/login">
+            Login
+          </Link>
+        </li>
+      </ul>
+    )
 
-  // return header component to render
-  return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-      <div className="container">
-        <Link className="navbar-brand" to="/">
-          DevConnector
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#mobile-nav"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
+    //navbar links for logged in users
+    const authLinks = (
+      <ul className="navbar-nav ml-auto">
+        <li className="nav-item">
+          <a className="nav-link" onClick={this.onLogoutClick}>
+            <img
+              src={user.avatar}
+              alt={user.name}
+              style={{ width: '25px', height: '25px', marginRight: '5px' }}
+              title="you must have a gravatar connected to your email to display an image"
+            />
+            Logout
+          </a>
+        </li>
+      </ul>
+    )
 
-        <div className="collapse navbar-collapse" id="mobile-nav">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/profile">
-                {' '}
-                Developers
-              </Link>
-            </li>
-          </ul>
-          {isAuth ? authLinks : guestLinks}
+    // return header component to render
+    return (
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+        <div className="container">
+          <Link className="navbar-brand" to="/">
+            DevConnector
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#mobile-nav"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+
+          <div className="collapse navbar-collapse" id="mobile-nav">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/profile">
+                  {' '}
+                  Developers
+                </Link>
+              </li>
+            </ul>
+            {isAuth ? authLinks : guestLinks}
+          </div>
         </div>
-      </div>
-    </nav>
-  )
+      </nav>
+    )
+  }
 }
 
 Header.propTypes = {
@@ -83,7 +91,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onLogoutUser: () => dispatch(actions.logoutUser())
+  onLogoutUser: () => dispatch(actions.logoutUser()),
+  onClearCurrentProfile: () => dispatch(actions.clearCurrentProfile())
 })
 
 export default connect(
