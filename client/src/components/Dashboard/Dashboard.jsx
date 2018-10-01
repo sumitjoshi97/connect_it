@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index'
 import Spinner from '../Common/Spinner/Spinner'
+import ProfileActions from '../ProfileActions/ProfileActions'
+
 class Dashboard extends Component {
   componentDidMount() {
     this.props.onGetCurrentProfile()
@@ -19,9 +21,18 @@ class Dashboard extends Component {
     } else {
       //check if logged in user has profile
       if (Object.keys(profile).length > 0) {
-        dashboardContent = <h2>Profile</h2>
+        dashboardContent = (
+          <div>
+            <p className="lead text-muted">
+              Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+            </p>
+            <ProfileActions />
+            <div style={{ marginBottom: '60px' }} />
+            <button className="btn btn-danger" onClick={this.props.onDeleteProfile}>Delete account </button>
+          </div>
+        )
       } else {
-        //User is ogged in but has no profile
+        //User is logged in but has no profile
         dashboardContent = (
           <div>
             <p className="lead text-muted">Welcome {user.name}</p>
@@ -63,7 +74,8 @@ const mpaStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onGetCurrentProfile: () => dispatch(actions.getCurrentProfile())
+  onGetCurrentProfile: () => dispatch(actions.getCurrentProfile()),
+  onDeleteProfile: () => dispatch(actions.deleteProfile())
 })
 
 export default connect(
