@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 
+// import redux actions
 import * as actions from '../../store/actions/index'
 
+// import files
 import Spinner from '../Common/Spinner/Spinner'
+import ProfileItem from './ProfileItem/ProfileItem'
 
 export class Profiles extends Component {
   componentDidMount() {
@@ -18,29 +21,35 @@ export class Profiles extends Component {
       profileItems = <Spinner />
     } else {
       if (profiles.length > 0) {
-        profileItems = <h1>Profile</h1>
+        profileItems = profiles.map(profile => <ProfileItem key={profile._id} profile={profile}/>)
       } else {
         profileItems = <h4>No Profiles Found</h4>
       }
     }
-    return
-    ;<div className="profiles">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <h1 className="display-4 text-center">Developer Profile</h1>
-            <p className="lead text-center">
-              Browse and connect with developers
-            </p>
-            {profileItems}
+
+    return (
+      <div className="profiles">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <h1 className="display-4 text-center">Developer Profile</h1>
+              <p className="lead text-center">
+                Browse and connect with developers
+              </p>
+              {profileItems}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    )
   }
 }
 
-Profiles.propTypes = {}
+Profiles.propTypes = {
+  profiles: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  onGetProfiles: PropTypes.func.isRequired
+}
 
 const mapStateToProps = state => ({
   profiles: state.profile.profiles,
@@ -50,6 +59,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onGetProfiles: () => dispatch(actions.getProfiles())
 })
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
