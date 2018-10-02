@@ -51,6 +51,7 @@ class CreateProfile extends Component {
       youtube: this.state.youtube,
       instagram: this.state.instagram
     }
+    
     this.props.onCreateProfile(profileData, this.props.history)
   }
 

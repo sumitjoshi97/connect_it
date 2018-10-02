@@ -2,10 +2,17 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+
+// import actions
 import * as actions from '../../store/actions/index'
+
+// import compoenent files
 import Spinner from '../Common/Spinner/Spinner'
 import ProfileActions from '../ProfileActions/ProfileActions'
+import Experience from './Experience'
+import Education from './Education'
 
+// component
 class Dashboard extends Component {
   componentDidMount() {
     this.props.onGetCurrentProfile()
@@ -27,8 +34,14 @@ class Dashboard extends Component {
               Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
             </p>
             <ProfileActions />
+            <Education education={profile.education} />
+            <Experience experience={profile.experience} />
             <div style={{ marginBottom: '60px' }} />
-            <button className="btn btn-danger" onClick={this.props.onDeleteProfile}>Delete account </button>
+            <button
+              className="btn btn-danger"
+              onClick={this.props.onDeleteProfile}>
+              Delete account{' '}
+            </button>
           </div>
         )
       } else {
