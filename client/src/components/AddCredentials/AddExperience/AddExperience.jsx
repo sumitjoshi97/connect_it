@@ -22,6 +22,7 @@ class AddExperience extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
+    // checks for errors if errors are updated then returns error state with new values
     if (nextProps.errors !== prevState.errors) {
       return { errors: nextProps.errors }
     } else return null
@@ -42,7 +43,8 @@ class AddExperience extends Component {
   }
 
   // adds the experience to db
-  onSubmit = () => {
+  onSubmit = e => {
+    e.preventDefault()
     const expData = {
       company: this.state.company,
       title: this.state.title,
@@ -52,7 +54,6 @@ class AddExperience extends Component {
       current: this.state.to,
       description: this.state.description
     }
-
     // sends expData and router history to add experience redux action
     this.props.onAddExperience(expData, this.props.history)
   }
@@ -65,7 +66,7 @@ class AddExperience extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">
+              <Link to="/dashboard" className="btn btn-secondary">
                 Go back
               </Link>
               <h1 className="display-4 text-center">Add Experience</h1>
@@ -143,17 +144,16 @@ class AddExperience extends Component {
 }
 
 AddExperience.propTypes = {
-  profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile.profile,
   errors: state.errors.errors
 })
 
 const mapDispatchToProps = dispatch => ({
-  onAddExperience: experienceData => dispatch(actions.addExperience(experienceData))
+  onAddExperience: (expData, history) =>
+    dispatch(actions.addExperience(expData, history))
 })
 
 export default connect(
