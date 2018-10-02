@@ -18,6 +18,13 @@ export default (state = initialState, action) => {
         loading: false
       }
 
+    case actionTypes.GET_PROFILES:
+      return {
+        ...state,
+        loading: false,
+        profiles: action.profiles
+      }
+
     case actionTypes.CLEAR_CURRENT_PROFILE:
       return { ...state, profile: null }
 
