@@ -54,6 +54,9 @@ class CreateProfile extends Component {
     this.props.onCreateProfile(profileData, this.props.history)
   }
 
+  componentDidMount() {
+    this.props.onGetCurrentProfile()
+  }
   static getDerivedStateFromProps(nextProps, prevState) {
     // update errors store if errors props from redux store are different
     if (nextProps.errors !== prevState.errors) {
@@ -201,19 +204,16 @@ class CreateProfile extends Component {
 }
 
 CreateProfile.propTypes = {
-  profile: PropTypes.object,
-  // errors: PropTypes.object.isRequired,
   onCreateProfile: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile.profile,
   errors: state.errors.errors
 })
 
 const mapDispatchToProps = dispatch => ({
-  onCreateProfile: (profile, history) =>
-    dispatch(actions.createProfile(profile, history))
+  onCreateProfile: (profile, history) => dispatch(actions.createProfile(profile, history)),
+  onGetCurrentProfile: () => dispatch(actions.getCurrentProfile())
 })
 
 export default connect(
