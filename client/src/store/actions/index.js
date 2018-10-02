@@ -10,5 +10,6 @@ export {
     getCurrentProfile,
     clearCurrentProfile,
     createProfile,
+    addExperience,
     deleteProfile
 } from './profileActions'
