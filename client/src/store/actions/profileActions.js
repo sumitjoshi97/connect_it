@@ -43,3 +43,11 @@ export const deleteProfile = () => dispatch => {
     .then(res => dispatch(setCurrentUser({})))
     .catch(err => dispatch(getErrors(err.response.data)))
 }
+
+// adds experience to user profile
+export const addExperience = (expData, history) => dispatch => {
+  axios.post('/api/profile/experience', expData)
+    .then(res => history.push('/dashboard')
+    .catch(err => dispatch(getErrors(err.response.data)))
+    )
+}
