@@ -36,6 +36,11 @@ class Header extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
+          <Link className="nav-link" to="/dashboard">
+            dashboard
+          </Link>
+        </li>
+        <li className="nav-item">
           <a className="nav-link" onClick={this.onLogoutClick}>
             <img
               src={user.avatar}
