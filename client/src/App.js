@@ -8,6 +8,9 @@ import {
 import { connect } from 'react-redux'
 import jwt_decode from 'jwt-decode'
 
+// importing actions
+import * as actions from './store/actions/index'
+
 // importing files
 import './App.css'
 import Header from './components/Layout/Header/Header'
@@ -16,12 +19,13 @@ import Footer from './components/Layout/Footer/Footer'
 import Register from './components/Auth/Register/Register'
 import Login from './components/Auth/Login/Login'
 import Profile from './components/Profile/Profile'
+import Profiles from './components/Profiles/Profiles'
 import CreateProfile from './components/CreateProfile/CreateProfile'
 import EditProfile from './components/EditProfile/EditProfile'
 import setAuthToken from './store/utils/setAuthToken'
-import * as actions from './store/actions/index'
 import Dashboard from './components/Dashboard/Dashboard'
 import AddExperience from './components/AddCredentials/AddExperience/AddExperience'
+import AddEducation from './components/AddCredentials/AddEducation/AddEducation'
 
 // app component
 class App extends Component {
@@ -34,10 +38,8 @@ class App extends Component {
       const decoded = jwt_decode(localStorage.jwtToken)
       // set user and isAuth
       this.props.onSetCurrentUser(decoded)
-      console.log(decoded)
       // check for expired token
       const currentTime = Date.now() / 1000
-      console.log(currentTime)
       if (decoded.exp < currentTime) {
         // logout user
         this.props.onLogoutUser()
@@ -54,10 +56,12 @@ class App extends Component {
     const authRoutes = (
       <Switch>
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/profiles" component={Profiles} />
         <Route path="/profile" component={Profile} />
         <Route path="/create-profile" component={CreateProfile} />
         <Route path="/edit-profile" component={EditProfile} />
         <Route path="/add-experience" component={AddExperience} />
+        <Route path="/add-education" component={AddEducation} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path="/" exact component={Landing} />
@@ -78,10 +82,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-          {/* <div className="container"> */}
           {this.props.isAuth ? authRoutes : guestRoutes}
-          {/* </div> */}
-
           <Footer />
         </div>
       </Router>
