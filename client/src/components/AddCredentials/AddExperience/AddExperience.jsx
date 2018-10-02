@@ -51,7 +51,7 @@ class AddExperience extends Component {
       location: this.state.location,
       from: this.state.from,
       to: this.state.to,
-      current: this.state.to,
+      current: this.state.current,
       description: this.state.description
     }
     // sends expData and router history to add experience redux action
@@ -144,7 +144,8 @@ class AddExperience extends Component {
 }
 
 AddExperience.propTypes = {
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  onAddExperience: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
