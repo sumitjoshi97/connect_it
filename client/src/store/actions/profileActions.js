@@ -87,9 +87,10 @@ export const deleteEducation = edu_id => dispatch => {
 // Get all profiles
 export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading())
-  axios.delete('/api/profile/all')
+  axios.get('/api/profile/all')
     .then(res => dispatch({
-      type: actionTypes.GET_PROFILES
+      type: actionTypes.GET_PROFILES,
+      profiles: res.data
     }))
     .catch(err => getErrors(err.response.data))
 }
