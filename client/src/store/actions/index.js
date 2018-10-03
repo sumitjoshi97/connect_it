@@ -8,6 +8,7 @@ export {
 
 export {
     getCurrentProfile,
+    getProfileByHandle,
     clearCurrentProfile,
     createProfile,
     addExperience,
@@ -15,5 +16,9 @@ export {
     addEducation,
     deleteEducation,
     deleteProfile,
-    getProfiles
+    getProfilesInit
 } from './profileActions'
+
+export {
+    addPostInit
+} from './postActions'
