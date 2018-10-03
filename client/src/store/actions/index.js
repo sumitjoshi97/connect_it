@@ -20,5 +20,7 @@ export {
 } from './profileActions'
 
 export {
-    addPostInit
+    addPost,
+    getPosts,
+    deletePost
 } from './postActions'
