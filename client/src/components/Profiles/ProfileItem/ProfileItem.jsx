@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import isEmpty from '../../../store/utils/isEmpty'
 
@@ -22,7 +23,7 @@ export class ProfileItem extends Component {
             <p>
               {isEmpty(profile.company) ? null : (
                 <Fragment>
-                  <i className="fas fa-map-marker" />
+                  <i className="fas fa-map-marker" />{' '}
                   <span>{profile.company}</span>
                 </Fragment>
               )}
@@ -30,7 +31,7 @@ export class ProfileItem extends Component {
             <p>
               {isEmpty(profile.location) ? null : (
                 <Fragment>
-                  <i className="fas fa-briefcase" />
+                  <i className="fas fa-briefcase" />{' '}
                   <span>{profile.location}</span>
                 </Fragment>
               )}
@@ -45,7 +46,7 @@ export class ProfileItem extends Component {
   }
 }
 
-ProfileItem = {
+ProfileItem.propTypes = {
   profile: PropTypes.object.isRequired
 }
 

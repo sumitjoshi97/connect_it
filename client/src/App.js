@@ -46,7 +46,7 @@ class App extends Component {
         //clear current profile
         this.props.onClearCurrentProfile()
         //redirect to logins
-        window.location.href = '/login'
+        this.props.history.push('/login')
       }
     }
   }
@@ -57,7 +57,7 @@ class App extends Component {
       <Switch>
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/profiles" component={Profiles} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile/:handle" component={Profile} />
         <Route path="/create-profile" component={CreateProfile} />
         <Route path="/edit-profile" component={EditProfile} />
         <Route path="/add-experience" component={AddExperience} />

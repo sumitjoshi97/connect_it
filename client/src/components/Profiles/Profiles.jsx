@@ -12,7 +12,7 @@ import ProfileItem from './ProfileItem/ProfileItem'
 export class Profiles extends Component {
   componentDidMount() {
     this.props.onGetProfiles()
-  }
+  }   
   render() {
     const { profiles, loading } = this.props
     let profileItems
@@ -57,7 +57,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onGetProfiles: () => dispatch(actions.getProfiles())
+  onGetProfiles: () => dispatch(actions.getProfilesInit())
 })
 
 export default connect(
