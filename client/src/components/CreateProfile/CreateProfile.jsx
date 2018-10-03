@@ -127,6 +127,13 @@ class CreateProfile extends Component {
                   error={errors.location}
                 />
                 <Input
+                  name="githubUsername"
+                  placeholder="Github username"
+                  value={this.state.githubUsername}
+                  onChange={this.onInputChange}
+                  error={errors.githubUsername}
+                />
+                <Input
                   name="skills"
                   placeholder="Skills"
                   value={this.state.skills}

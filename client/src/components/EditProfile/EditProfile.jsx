@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Input from '../Common/Input/Input'
 import InputGroup from '../Common/Input/InputGroup'
@@ -28,41 +28,12 @@ class EditProfile extends Component {
     errors: {}
   }
 
-  onInputChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
-
-  onSubmit = e => {
-    e.preventDefault()
-
-    const profileData = {
-      handle: this.state.handle,
-      company: this.state.company,
-      website: this.state.website,
-      location: this.state.location,
-      status: this.state.status,
-      skills: this.state.skills,
-      githubUsername: this.state.githubUsername,
-      bio: this.state.bio,
-      twitter: this.state.twitter,
-      facebook: this.state.facebook,
-      linkedin: this.state.linkedin,
-      youtube: this.state.youtube,
-      instagram: this.state.instagram
-    }
-
-    this.props.onCreateProfile(profileData, this.props.history)
-  }
-
-  // gets profile and set profile to passed props profile
+  // gets profile and set profile to passed props profile after initial render
   componentDidMount() {
     this.props.onGetCurrentProfile()
 
     if (this.props.profile) {
       let profile = this.props.profile
-      console.log('id')
       // join skills array back to comma separated string
 
       let skillsCSV = profile.skills.join(',')
@@ -119,6 +90,34 @@ class EditProfile extends Component {
     } else return null
   }
 
+  onInputChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  onSubmit = e => {
+    e.preventDefault()
+
+    const profileData = {
+      handle: this.state.handle,
+      company: this.state.company,
+      website: this.state.website,
+      location: this.state.location,
+      status: this.state.status,
+      skills: this.state.skills,
+      githubUsername: this.state.githubUsername,
+      bio: this.state.bio,
+      twitter: this.state.twitter,
+      facebook: this.state.facebook,
+      linkedin: this.state.linkedin,
+      youtube: this.state.youtube,
+      instagram: this.state.instagram
+    }
+    console.log(profileData)
+    this.props.onCreateProfile(profileData, this.props.history)
+  }
+
   render() {
     const { displaySocialInput, errors } = this.state
 
@@ -137,6 +136,9 @@ class EditProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
+              <Link to="/dashboard" className="btn btn-light">
+                Go Back
+              </Link>
               <h1 className="display-4 text-center">Edit your Profile</h1>
               <p className="lead text-center">
                 Add some info to make your profile stand out
@@ -181,6 +183,13 @@ class EditProfile extends Component {
                   error={errors.location}
                 />
                 <Input
+                  name="githubUsername"
+                  placeholder="Github username"
+                  value={this.state.githubUsername}
+                  onChange={this.onInputChange}
+                  error={errors.githubUsername}
+                />
+                <Input
                   name="skills"
                   placeholder="Skills"
                   value={this.state.skills}
@@ -199,11 +208,12 @@ class EditProfile extends Component {
 
                 <div className="mb-3">
                   <button
-                    onClick={() =>
+                    onClick={e => {
+                      e.preventDefault()
                       this.setState(prevState => ({
                         displaySocialInput: !prevState.displaySocialInput
                       }))
-                    }
+                    }}
                     className="btn btn-secondary">
                     Add social links
                   </button>
@@ -239,11 +249,11 @@ class EditProfile extends Component {
                     />
                     <InputGroup
                       name="linkedin"
-                      icon="fab fa-linked"
+                      icon="fab fa-linkedin"
                       placeholder="Linked Profile"
                       onChange={this.onInputChange}
-                      value={this.state.linked}
-                      error={errors.linked}
+                      value={this.state.linkedin}
+                      error={errors.linkedin}
                     />
                     <InputGroup
                       name="instagram"
@@ -256,7 +266,11 @@ class EditProfile extends Component {
                   </Fragment>
                 )}
 
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input
+                  type="submit"
+                  value="Submit"
+                  className="btn btn-info btn-block mt-4"
+                />
               </form>
             </div>
           </div>
