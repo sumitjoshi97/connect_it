@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -10,7 +10,7 @@ class Header extends Component {
     e.preventDefault()
     this.props.onClearCurrentProfile()
     this.props.onLogoutUser()
-    this.props.history.push('/')
+    this.props.history.push('/login')
   }
 
   render() {
@@ -34,29 +34,39 @@ class Header extends Component {
 
     //navbar links for logged in users
     const authLinks = (
-      <ul className="navbar-nav ml-auto">
-      <li className="nav-item">
-          <Link className="nav-link" to="/posts">
-            posts
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/dashboard">
-            dashboard
-          </Link>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" onClick={this.onLogoutClick}>
-            <img
-              src={user.avatar}
-              alt={user.name}
-              style={{ width: '25px', height: '25px', marginRight: '5px' }}
-              title="you must have a gravatar connected to your email to display an image"
-            />
-            Logout
-          </a>
-        </li>
-      </ul>
+      <Fragment>
+        <ul className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <Link className="nav-link" to="/profiles">
+              {' '}
+              Developers
+            </Link>
+          </li>
+        </ul>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link className="nav-link" to="/posts">
+              posts
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/dashboard">
+              dashboard
+            </Link>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" onClick={this.onLogoutClick}>
+              <img
+                src={user.avatar}
+                alt={user.name}
+                style={{ width: '25px', height: '25px', marginRight: '5px' }}
+                title="you must have a gravatar connected to your email to display an image"
+              />
+              Logout
+            </a>
+          </li>
+        </ul>
+      </Fragment>
     )
 
     // return header component to render
@@ -70,20 +80,11 @@ class Header extends Component {
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#mobile-nav"
-          >
+            data-target="#mobile-nav">
             <span className="navbar-toggler-icon" />
           </button>
 
           <div className="collapse navbar-collapse" id="mobile-nav">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/profiles">
-                  {' '}
-                  Developers
-                </Link>
-              </li>
-            </ul>
             {isAuth ? authLinks : guestLinks}
           </div>
         </div>

@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 class Landing extends Component {
-  componentDidMount() {
-    // checks if user is authenticated
-    if (this.props.isAuth) {
-      // redirects user to dashboard page
-      this.props.history.push('/dashboard')
-    }
-  }
-
   render() {
+    let redirectRoute = null
+
+    // checks if user is authenticated and sets redirected route to dashboard
+    if (this.props.isAuth) {
+      redirectRoute = <Redirect to="/dashboard" />
+    }
+
     return (
       <div className="landing">
+        {redirectRoute}
         <div className="dark-overlay landing-inner text-light">
           <div className="container">
             <div className="row">

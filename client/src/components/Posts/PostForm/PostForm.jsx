@@ -37,7 +37,7 @@ export class PostForm extends Component {
     // create new post from state
     const newPost = {
       text: this.state.text,
-      user: user.name,
+      user: user.id,
       avatar: user.avatar
     }
 
@@ -81,7 +81,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onAddPost: post => dispatch(actions.addPostInit(post))
+  onAddPost: post => dispatch(actions.addPost(post))
 })
 
 export default connect(

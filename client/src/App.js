@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
+  withRouter
 } from 'react-router-dom'
 import { connect } from 'react-redux'
 import jwt_decode from 'jwt-decode'
@@ -27,6 +27,7 @@ import Dashboard from './components/Dashboard/Dashboard'
 import AddExperience from './components/AddCredentials/AddExperience/AddExperience'
 import AddEducation from './components/AddCredentials/AddEducation/AddEducation'
 import Posts from './components/Posts/Posts'
+
 // app component
 class App extends Component {
   componentDidMount() {
@@ -52,26 +53,8 @@ class App extends Component {
   }
 
   render() {
-    // routes for authenticated users
-    const authRoutes = (
-      <Switch>
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/posts" component={Posts} />
-        <Route path="/profiles" component={Profiles} />
-        <Route path="/profile/:handle" component={Profile} />
-        <Route path="/create-profile" component={CreateProfile} />
-        <Route path="/edit-profile" component={EditProfile} />
-        <Route path="/add-experience" component={AddExperience} />
-        <Route path="/add-education" component={AddEducation} />
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-        <Route path="/" exact component={Landing} />
-        <Redirect to="/" />
-      </Switch>
-    )
-
     // routes for users that are not logged in
-    const guestRoutes = (
+    let routes = (
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/register" component={Register} />
@@ -79,14 +62,33 @@ class App extends Component {
         <Redirect to="/login" />
       </Switch>
     )
+
+    // routes for authenticated users
+    if (this.props.isAuth) {
+      routes = (
+        <Switch>
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/posts" component={Posts} />
+          <Route path="/profiles" component={Profiles} />
+          <Route path="/profile/:handle" component={Profile} />
+          <Route path="/create-profile" component={CreateProfile} />
+          <Route path="/edit-profile" component={EditProfile} />
+          <Route path="/add-experience" component={AddExperience} />
+          <Route path="/add-education" component={AddEducation} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="/" exact component={Landing} />
+          <Redirect to="/dashboard" />
+        </Switch>
+      )
+    }
+
     return (
-      <Router>
-        <div className="App">
-          <Header />
-          {this.props.isAuth ? authRoutes : guestRoutes}
-          <Footer />
-        </div>
-      </Router>
+      <div className="App">
+        <Header />
+        {routes}
+        <Footer />
+      </div>
     )
   }
 }
@@ -102,7 +104,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 // export app wrapped in redux store
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(App))
