@@ -8,7 +8,7 @@ import * as actions from '../../store/actions/index'
 
 // import compoenent files
 import Spinner from '../Common/Spinner/Spinner'
-import ProfileActions from '../ProfileActions/ProfileActions'
+import ProfileActions from './ProfileActions/ProfileActions'
 import Experience from './Experience'
 import Education from './Education'
 

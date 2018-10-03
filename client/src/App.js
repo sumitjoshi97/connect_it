@@ -20,13 +20,13 @@ import Register from './components/Auth/Register/Register'
 import Login from './components/Auth/Login/Login'
 import Profile from './components/Profile/Profile'
 import Profiles from './components/Profiles/Profiles'
-import CreateProfile from './components/CreateProfile/CreateProfile'
+import CreateProfile from './components/Dashboard/CreateProfile/CreateProfile'
 import EditProfile from './components/EditProfile/EditProfile'
 import setAuthToken from './store/utils/setAuthToken'
 import Dashboard from './components/Dashboard/Dashboard'
 import AddExperience from './components/AddCredentials/AddExperience/AddExperience'
 import AddEducation from './components/AddCredentials/AddEducation/AddEducation'
-
+import Posts from './components/Posts/Posts'
 // app component
 class App extends Component {
   componentDidMount() {
@@ -56,6 +56,7 @@ class App extends Component {
     const authRoutes = (
       <Switch>
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/posts" component={Posts} />
         <Route path="/profiles" component={Profiles} />
         <Route path="/profile/:handle" component={Profile} />
         <Route path="/create-profile" component={CreateProfile} />

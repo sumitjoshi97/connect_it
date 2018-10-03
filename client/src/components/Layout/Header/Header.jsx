@@ -35,6 +35,11 @@ class Header extends Component {
     //navbar links for logged in users
     const authLinks = (
       <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+          <Link className="nav-link" to="/posts">
+            posts
+          </Link>
+        </li>
         <li className="nav-item">
           <Link className="nav-link" to="/dashboard">
             dashboard
