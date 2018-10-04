@@ -10,7 +10,7 @@ export class CommentForm extends Component {
     onAddComment: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
-    postId: PropTypes.string.isRequired
+    postId: PropTypes.string
   }
 
   state = {
@@ -38,12 +38,13 @@ export class CommentForm extends Component {
     // create new post from state
     const newComment = {
       text: this.state.text,
-      user: user.id,
+      name: user.name,
       avatar: user.avatar
     }
 
+    console.log(postId)
     // add new post
-    this.props.onAddCommment(postId, newComment)
+    this.props.onAddComment(postId, newComment)
     // reset text state
     this.setState({ text: '' })
   }
@@ -53,7 +54,9 @@ export class CommentForm extends Component {
     return (
       <div className="post-form mb-3">
         <div className="card card-info">
-          <div className="card-header bg-info text-white">Write a comment...</div>
+          <div className="card-header bg-info text-white">
+            Write a comment...
+          </div>
           <div className="card-body">
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
@@ -82,7 +85,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onAddComment: post => dispatch(actions.addComment(post))
+  onAddComment: (id, post) => dispatch(actions.addComment(id, post))
 })
 
 export default connect(

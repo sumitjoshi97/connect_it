@@ -14,7 +14,7 @@ export class PostItem extends Component {
   }
 
   render() {
-    const { post, user, isAuth, onAddLike, onRemoveLike } = this.props
+    const { post, user, showActions, onAddLike, onRemoveLike } = this.props
     return (
       <div className="card card-body mb-3">
         <div className="row">
@@ -33,7 +33,7 @@ export class PostItem extends Component {
             <p className="lead">{post.text}</p>
 
             {/* buttons shows when auth is true */}
-            {isAuth && (
+            {showActions && (
               <div>
                 <button
                   type="button"

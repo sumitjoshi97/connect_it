@@ -41,7 +41,6 @@ export class PostForm extends Component {
       avatar: user.avatar
     }
 
-    console.log(newPost)
     // add new post
     this.props.onAddPost(newPost)
     // reset text state

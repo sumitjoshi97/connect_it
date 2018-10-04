@@ -52,7 +52,7 @@ router.post(
     
     // check validation
     if (!isValid) {
-      res.status(400).json(errors)
+      return res.status(400).json(errors)
     }
 
     // create new post from req.body
@@ -144,9 +144,9 @@ router.post(
 
     // check validation
     if (!isValid) {
-      req.status(400).json(errors)
+      return res.status(400).json(errors)
     }
-
+    console.log('post id',req.params.post_id)
     Post.findById(req.params.post_id)
       .then(post => {
         const newComment = {
@@ -155,10 +155,10 @@ router.post(
           avatar: req.body.avatar,
           user: req.user.id
         }
-
+        console.log('comment', newComment)
         // Add new comment to comment array
         post.comments.unshift(newComment)
-
+        console.log(post.comments)
         // save comment
         post.save().then(post => res.json(post))
       })

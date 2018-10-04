@@ -7,6 +7,7 @@ import Spinner from '../Common/Spinner/Spinner'
 import PostItem from '../Posts/PostFeed/PostItem/PostItem'
 
 import * as actions from '../../store/actions/index'
+import CommentForm from './CommentForm/CommentForm'
 
 export class Post extends Component {
   static propTypes = {
@@ -24,11 +25,12 @@ export class Post extends Component {
 
     let postContent = (
       <div>
-        <PostItem post={post} showActions={false}/>
+        <PostItem post={post} showActions={false} />
+        <CommentForm postId={post._id} />
       </div>
     )
 
-    if (post === null || loading || Object.keys(post).length > 0) {
+    if (post === null || loading || Object.keys(post).length === 0) {
       postContent = <Spinner />
     }
 
@@ -55,7 +57,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onGetPost: id => dispatch(actions.getPosts(id))
+  onGetPost: id => dispatch(actions.getPost(id))
 })
 
 export default connect(

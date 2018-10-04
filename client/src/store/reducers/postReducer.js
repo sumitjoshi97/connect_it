@@ -30,7 +30,8 @@ export default (state = initialState, action) => {
     case actionTypes.GET_POST:
       return {
         ...state,
-        post: action.post
+        post: action.post,
+        loading: false
       }
       
     case actionTypes.DELETE_POST:
