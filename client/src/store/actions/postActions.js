@@ -17,6 +17,20 @@ export const addPost = post => dispatch => {
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
+// get single post
+export const getPost = id => dispatch => {
+  dispatch(setPostLoading())
+  axios
+    .get(`/api/posts/${id}`)
+    .then(res =>
+      dispatch({
+        type: actionTypes.GET_POST,
+        post: res.data
+      })
+    )
+    .catch(err => dispatch(getErrors(err.response.data)))
+}
+
 // get all posts
 export const getPosts = () => dispatch => {
   dispatch(setPostLoading())
@@ -60,16 +74,10 @@ export const removeLike = id => dispatch => {
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
-// get single post
-export const getPost = id => dispatch => {
-  dispatch(setPostLoading())
+//add comment
+export const addComment = (id, comment) => dispatch => {
   axios
-    .get(`/api/posts/${id}`)
-    .then(res =>
-      dispatch({
-        type: actionTypes.GET_POST,
-        post: res.data
-      })
-    )
+    .post(`/api/posts/comment/${id}`, comment)
+    .then(res => dispatch(getPost(id)))
     .catch(err => dispatch(getErrors(err.response.data)))
 }
