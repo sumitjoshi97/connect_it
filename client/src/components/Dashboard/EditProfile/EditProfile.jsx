@@ -2,12 +2,13 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import Input from '../Common/Input/Input'
-import InputGroup from '../Common/Input/InputGroup'
-import TextArea from '../Common/Input/TextArea'
-import SelectList from '../Common/Input/SelectList'
-import * as actions from '../../store/actions/index'
-import isEmpty from '../../store/utils/isEmpty'
+
+import Input from '../../Common/Input/Input'
+import InputGroup from '../../Common/Input/InputGroup'
+import TextArea from '../../Common/Input/TextArea'
+import SelectList from '../../Common/Input/SelectList'
+import * as actions from '../../../store/actions/index'
+import isEmpty from '../../../store/utils/isEmpty'
 
 class EditProfile extends Component {
   state = {
