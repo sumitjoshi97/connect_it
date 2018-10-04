@@ -23,8 +23,6 @@ export class ProfileGithub extends Component {
       .catch(err => console.log(err))
   }
 
-  componentWillUnmount() {}
-
   render() {
     const { repos } = this.state
     let repoList = <Spinner />

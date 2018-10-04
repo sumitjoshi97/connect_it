@@ -9,7 +9,9 @@ export class PostFeed extends Component {
   }
 
   render() {
-    return this.props.posts.map(post => <PostItem showActions={true} post={post} />)
+    return this.props.posts.map(post => (
+      <PostItem key={post._id} showActions={true} post={post} />
+    ))
   }
 }
 

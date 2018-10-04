@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import isEmpty from '../../../utils/isEmpty'
 
 const ProfileHeader = ({ profile }) => {
@@ -34,45 +34,51 @@ const ProfileHeader = ({ profile }) => {
                   <i className="fas fa-globe fa-2x" />
                 </a>
               )}
-              {isEmpty(profile.social.twitter) ? null : (
-                <a
-                  className="text-white p-2"
-                  href={profile.social.twitter}
-                  target="_blank">
-                  <i className="fab fa-twitter fa-2x" />
-                </a>
-              )}
-              {isEmpty(profile.social.facebook) ? null : (
-                <a
-                  className="text-white p-2"
-                  href={profile.social.facebook}
-                  target="_blank">
-                  <i className="fab fa-facebook fa-2x" />
-                </a>
-              )}
-              {isEmpty(profile.social.linkedin) ? null : (
-                <a
-                  className="text-white p-2"
-                  href={profile.social.linkedin}
-                  target="_blank">
-                  <i className="fab fa-linkedin fa-2x" />
-                </a>
-              )}
-              {isEmpty(profile.social.youtube) ? null : (
-                <a
-                  className="text-white p-2"
-                  href={profile.social.youtube}
-                  target="_blank">
-                  <i className="fab fa-youtube fa-2x" />
-                </a>
-              )}
-              {isEmpty(profile.social.instagram) ? null : (
-                <a
-                  className="text-white p-2"
-                  href={profile.social.instagram}
-                  target="_blank">
-                  <i className="fab fa-instagram fa-2x" />
-                </a>
+
+              {/* check if social array is defined */}
+              {profile.social && (
+                <Fragment>
+                  {!isEmpty(profile.social.twitter) && (
+                    <a
+                      className="text-white p-2"
+                      href={profile.social.twitter}
+                      target="_blank">
+                      <i className="fab fa-twitter fa-2x" />
+                    </a>
+                  )}
+                  {!isEmpty(profile.social.facebook) && (
+                    <a
+                      className="text-white p-2"
+                      href={profile.social.facebook}
+                      target="_blank">
+                      <i className="fab fa-facebook fa-2x" />
+                    </a>
+                  )}
+                  {!isEmpty(profile.social.linkedin) && (
+                    <a
+                      className="text-white p-2"
+                      href={profile.social.linkedin}
+                      target="_blank">
+                      <i className="fab fa-linkedin fa-2x" />
+                    </a>
+                  )}
+                  {!isEmpty(profile.social.youtube) && (
+                    <a
+                      className="text-white p-2"
+                      href={profile.social.youtube}
+                      target="_blank">
+                      <i className="fab fa-youtube fa-2x" />
+                    </a>
+                  )}
+                  {!isEmpty(profile.social.instagram) && (
+                    <a
+                      className="text-white p-2"
+                      href={profile.social.instagram}
+                      target="_blank">
+                      <i className="fab fa-instagram fa-2x" />
+                    </a>
+                  )}
+                </Fragment>
               )}
             </p>
           </div>

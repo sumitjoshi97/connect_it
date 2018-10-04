@@ -23,7 +23,7 @@ export class PostItem extends Component {
               <img
                 className="rounded-circle d-none d-md-block"
                 src={post.avatar}
-                
+                alt={post.name}
               />
             </Link>
             <br />
