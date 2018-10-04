@@ -35,8 +35,8 @@ class EditProfile extends Component {
 
     if (this.props.profile) {
       let profile = this.props.profile
+      
       // join skills array back to comma separated string
-
       let skillsCSV = profile.skills.join(',')
 
       // if profile field doesn't exist make it empty string

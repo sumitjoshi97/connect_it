@@ -46,12 +46,12 @@ class Header extends Component {
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/posts">
-              posts
+              Posts
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/dashboard">
-              dashboard
+              Dashboard
             </Link>
           </li>
           <li className="nav-item">
@@ -74,7 +74,7 @@ class Header extends Component {
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            DevConnector
+            DevConnect
           </Link>
           <button
             className="navbar-toggler"
