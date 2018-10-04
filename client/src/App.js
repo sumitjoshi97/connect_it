@@ -21,12 +21,14 @@ import Login from './components/Auth/Login/Login'
 import Profile from './components/Profile/Profile'
 import Profiles from './components/Profiles/Profiles'
 import CreateProfile from './components/Dashboard/CreateProfile/CreateProfile'
-import EditProfile from './components/EditProfile/EditProfile'
+import EditProfile from './components/Dashboard/EditProfile/EditProfile'
 import setAuthToken from './store/utils/setAuthToken'
 import Dashboard from './components/Dashboard/Dashboard'
 import AddExperience from './components/AddCredentials/AddExperience/AddExperience'
 import AddEducation from './components/AddCredentials/AddEducation/AddEducation'
 import Posts from './components/Posts/Posts'
+import Post from './components/Post/Post'
+
 
 // app component
 class App extends Component {
@@ -69,6 +71,7 @@ class App extends Component {
         <Switch>
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/posts" component={Posts} />
+          <Route path="/posts/:id" component={Post} />
           <Route path="/profiles" component={Profiles} />
           <Route path="/profile/:handle" component={Profile} />
           <Route path="/create-profile" component={CreateProfile} />
