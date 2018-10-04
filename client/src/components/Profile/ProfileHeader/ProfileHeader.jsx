@@ -11,7 +11,7 @@ const ProfileHeader = ({ profile }) => {
               <img
                 className="rounded-circle"
                 src={profile.user.avatar}
-                alt=""
+                alt={profile.user.name}
               />
             </div>
           </div>
@@ -24,7 +24,7 @@ const ProfileHeader = ({ profile }) => {
               )}
             </p>
             <p>{profile.location}</p>
-            
+
             <p>
               {isEmpty(profile.website) ? null : (
                 <a

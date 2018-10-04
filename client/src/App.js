@@ -3,16 +3,12 @@ import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Loadable from 'react-loadable'
 
-// importing actions
-import * as actions from './store/actions/index'
-
 // importing files
 import './App.css'
 import Spinner from './components/Common/Spinner/Spinner'
 import Header from './components/Layout/Header/Header'
 import Footer from './components/Layout/Footer/Footer'
 import setAuthToken from './utils/setAuthToken'
-
 import store from './store/store'
 import jwt_decode from 'jwt-decode'
 import {
@@ -170,14 +166,14 @@ class App extends Component {
       routes = (
         <Switch>
           <Route path="/dashboard" component={Dashboard} />
-          <Route path="/posts" component={Posts} />
-          <Route path="/post/:id" component={Post} />
-          <Route path="/profiles" component={Profiles} />
-          <Route path="/profile/:handle" component={Profile} />
+          <Route path="/posts" exact component={Posts} />
+          <Route path="/post/:id" exact component={Post} />
+          <Route path="/profile/:handle" exact component={Profile} />
+          <Route path="/profiles" exact component={Profiles} />
           <Route path="/create-profile" component={CreateProfile} />
           <Route path="/edit-profile" component={EditProfile} />
-          <Route path="/add-experience" component={AddExperience} />
-          <Route path="/add-education" component={AddEducation} />
+          <Route path="/add-experience" exact component={AddExperience} />
+          <Route path="/add-education" exact component={AddEducation} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/" exact component={Landing} />

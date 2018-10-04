@@ -20,12 +20,11 @@ class Profile extends Component {
 
   render() {
     let userProfile
+    let { loading, profile } = this.props
 
-    userProfile = <Spinner />
-
-    if (!this.props.loading) {
-      const { profile } = this.props
-
+    if (loading || profile === null || Object.keys(profile).length === 0) {
+      userProfile = <Spinner />
+    } else {
       userProfile = (
         <div>
           <div className="row">
