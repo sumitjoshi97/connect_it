@@ -2,10 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
+
 import Input from '../../Common/Input/Input'
 import InputGroup from '../../Common/Input/InputGroup'
 import TextArea from '../../Common/Input/TextArea'
 import SelectList from '../../Common/Input/SelectList'
+
 import * as actions from '../../../store/actions'
 
 class CreateProfile extends Component {
@@ -51,7 +53,7 @@ class CreateProfile extends Component {
       youtube: this.state.youtube,
       instagram: this.state.instagram
     }
-    
+
     this.props.onCreateProfile(profileData, this.props.history)
   }
 
@@ -152,11 +154,12 @@ class CreateProfile extends Component {
 
                 <div className="mb-3">
                   <button
-                    onClick={() =>
+                    onClick={e => {
+                      e.preventDefault()
                       this.setState(prevState => ({
                         displaySocialInput: !prevState.displaySocialInput
                       }))
-                    }
+                    }}
                     className="btn btn-secondary">
                     Add social links
                   </button>
@@ -191,6 +194,14 @@ class CreateProfile extends Component {
                       error={errors.youtube}
                     />
                     <InputGroup
+                      name="linkedin"
+                      icon="fab fa-linkedin"
+                      placeholder="Linked Profile"
+                      onChange={this.onInputChange}
+                      value={this.state.linkedin}
+                      error={errors.linkedin}
+                    />
+                    <InputGroup
                       name="instagram"
                       icon="fab fa-instagram"
                       placeholder="Instagram Profile"
@@ -220,7 +231,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onCreateProfile: (profile, history) => dispatch(actions.createProfile(profile, history)),
+  onCreateProfile: (profile, history) =>
+    dispatch(actions.createProfile(profile, history)),
   onGetCurrentProfile: () => dispatch(actions.getCurrentProfile())
 })
 
