@@ -1,5 +1,4 @@
 //auth consts
-export const GET_ERRORS = 'GET_ERRORS'
 export const REGISTER_USER = 'REGISTER_USER'
 export const SET_CURENT_USER = 'SET_CURENT_USER'
 
@@ -18,3 +17,7 @@ export const ADD_POST = 'ADD_POST'
 export const DELETE_POST = 'DELETE_POST'
 
 //comment consts
+
+//error consts
+export const GET_ERRORS = 'GET_ERRORS'
+export const CLEAR_ERRORS = 'CLEAR_ERRORS'
