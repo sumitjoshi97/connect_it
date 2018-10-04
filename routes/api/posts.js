@@ -49,7 +49,7 @@ router.post(
   (req, res) => {
     // destructure error and isValid from validation
     const { errors, isValid } = validatePostInput(req.body)
-
+    
     // check validation
     if (!isValid) {
       res.status(400).json(errors)
