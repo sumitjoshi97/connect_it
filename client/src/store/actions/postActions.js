@@ -59,25 +59,32 @@ export const deletePost = id => dispatch => {
 }
 
 //add like
-export const addLike = id => dispatch => {
+export const addLike = postId => dispatch => {
   axios
-    .post(`/api/posts/like/${id}`)
+    .post(`/api/posts/like/${postId}`)
     .then(res => dispatch(getPosts()))
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
 //remove like
-export const removeLike = id => dispatch => {
+export const removeLike = postId => dispatch => {
   axios
-    .post(`/api/posts/unlike/${id}`)
+    .post(`/api/posts/unlike/${postId}`)
     .then(res => dispatch(getPosts()))
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
 //add comment
-export const addComment = (id, comment) => dispatch => {
+export const addComment = (postId, comment) => dispatch => {
   axios
-    .post(`/api/posts/comment/${id}`, comment)
-    .then(res => dispatch(getPost(id)))
+    .post(`/api/posts/comment/${postId}`, comment)
+    .then(res => dispatch(getPost(postId)))
     .catch(err => dispatch(getErrors(err.response.data)))
+}
+
+//delete comment
+export const deleteComment = (postId, commentId) => dispatch => {
+  axios.delete(`/api/posts/comment/${postId}/${commentId}`)
+    .then(res => dispatch(getPost(postId)))
+    .catch(err =>dispatch(getErrors(err.response.data)))
 }
