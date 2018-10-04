@@ -7,11 +7,7 @@ import axios from 'axios'
 // import jwt library to extract user from jwt token
 import jwt_decode from 'jwt-decode'
 
-// action returning error
-export const getErrors = err => ({
-  type: actionTypes.GET_ERRORS,
-  err
-})
+import { getErrors, clearErrors } from './index'
 
 // register user
 export const registerUser = (data, history) => dispatch => {

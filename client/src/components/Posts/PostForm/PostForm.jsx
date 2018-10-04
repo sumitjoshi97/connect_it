@@ -37,10 +37,11 @@ export class PostForm extends Component {
     // create new post from state
     const newPost = {
       text: this.state.text,
-      user: user.id,
+      name: user.name,
       avatar: user.avatar
     }
 
+    console.log(newPost)
     // add new post
     this.props.onAddPost(newPost)
     // reset text state
@@ -65,7 +66,7 @@ export class PostForm extends Component {
                 />
               </div>
               <button type="submit" value="Post" className="btn btn-dark">
-                Submit
+                Post
               </button>
             </form>
           </div>

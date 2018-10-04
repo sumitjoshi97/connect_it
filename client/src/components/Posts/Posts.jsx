@@ -14,13 +14,17 @@ export class Posts extends Component {
     loading: PropTypes.bool.isRequired
   }
 
+  componentDidMount() {
+    this.props.onGetPosts()
+  }
+
   render() {
     const {posts, loading} = this.props
 
     let postContent = <Spinner/>
 
     if (!loading) {
-      postContent = <PostFeed posts={posts} />
+      postContent = <PostFeed key='post' posts={posts} />
     }
 
     return (
