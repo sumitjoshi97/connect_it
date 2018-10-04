@@ -8,7 +8,7 @@ import InputGroup from '../../Common/Input/InputGroup'
 import TextArea from '../../Common/Input/TextArea'
 import SelectList from '../../Common/Input/SelectList'
 import * as actions from '../../../store/actions/index'
-import isEmpty from '../../../store/utils/isEmpty'
+import isEmpty from '../../../utils/isEmpty'
 
 class EditProfile extends Component {
   state = {

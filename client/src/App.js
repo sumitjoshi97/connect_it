@@ -1,10 +1,5 @@
 import React, { Component } from 'react'
-import {
-  Route,
-  Switch,
-  Redirect,
-  withRouter
-} from 'react-router-dom'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import jwt_decode from 'jwt-decode'
 
@@ -22,36 +17,41 @@ import Profile from './components/Profile/Profile'
 import Profiles from './components/Profiles/Profiles'
 import CreateProfile from './components/Dashboard/CreateProfile/CreateProfile'
 import EditProfile from './components/Dashboard/EditProfile/EditProfile'
-import setAuthToken from './store/utils/setAuthToken'
+import setAuthToken from './utils/setAuthToken'
 import Dashboard from './components/Dashboard/Dashboard'
 import AddExperience from './components/AddCredentials/AddExperience/AddExperience'
 import AddEducation from './components/AddCredentials/AddEducation/AddEducation'
 import Posts from './components/Posts/Posts'
 import Post from './components/Post/Post'
+import store from './store/store'
 
+import { setCurrentUser,logoutUser,clearCurrentProfile } from './store/actions/index'
+
+
+if (localStorage.jwtToken) {
+  // set auth token
+  setAuthToken(localStorage.jwtToken)
+  // decode token and get user
+  const decoded = jwt_decode(localStorage.jwtToken)
+  // set user and isAuth
+  store.dispatch(setCurrentUser(decoded))
+
+  // check for expired token
+  const currentTime = Date.now() / 1000
+  if (decoded.exp < currentTime) {
+    // logout user
+    store.dispatch(logoutUser())
+    //clear current profile
+    store.dispatch(clearCurrentProfile())
+    //redirect to login
+    window.location.href = '/login'
+  }
+}
 
 // app component
 class App extends Component {
   componentDidMount() {
     // check for token
-    if (localStorage.jwtToken) {
-      // set auth token
-      setAuthToken(localStorage.jwtToken)
-      // decode token and get user
-      const decoded = jwt_decode(localStorage.jwtToken)
-      // set user and isAuth
-      this.props.onSetCurrentUser(decoded)
-      // check for expired token
-      const currentTime = Date.now() / 1000
-      if (decoded.exp < currentTime) {
-        // logout user
-        this.props.onLogoutUser()
-        //clear current profile
-        this.props.onClearCurrentProfile()
-        //redirect to logins
-        this.props.history.push('/login')
-      }
-    }
   }
 
   render() {
@@ -107,7 +107,9 @@ const mapDispatchToProps = dispatch => ({
 })
 
 // export app wrapped in redux store
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App))
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+)

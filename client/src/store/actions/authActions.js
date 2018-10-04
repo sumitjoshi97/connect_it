@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes'
-import setAuthToken from '../utils/setAuthToken'
+import setAuthToken from '../../utils/setAuthToken'
 
 // import axios library
 import axios from 'axios'
@@ -13,12 +13,13 @@ import { getErrors, clearErrors } from './index'
 export const registerUser = (data, history) => dispatch => {
   axios
     .post('/api/users/register', data)
-    .then(res => history.push('/login'))
-    // .then(res =>console.log(res))
-    .catch(err => {
-      console.log(err)
-      dispatch(getErrors(err.response.data))
+    .then(res => {
+      // clear error state
+      dispatch(clearErrors())
+      // redirect route to login
+      history.push('/login')
     })
+    .catch(err => dispatch(getErrors(err.response.data)))
 }
 
 // login get user token
@@ -37,6 +38,8 @@ export const loginUser = data => dispatch => {
       const decoded = jwt_decode(token)
       // dispatch action to set current user
       dispatch(setCurrentUser(decoded))
+      // clear error state
+      dispatch(clearErrors())
     })
     .catch(error => dispatch(getErrors(error.response.data)))
 }

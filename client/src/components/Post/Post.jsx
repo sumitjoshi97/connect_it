@@ -5,9 +5,10 @@ import PropTypes from 'prop-types'
 
 import Spinner from '../Common/Spinner/Spinner'
 import PostItem from '../Posts/PostFeed/PostItem/PostItem'
+import CommentForm from './CommentForm/CommentForm'
+import CommentFeed from './CommentFeed/CommentFeed'
 
 import * as actions from '../../store/actions/index'
-import CommentForm from './CommentForm/CommentForm'
 
 export class Post extends Component {
   static propTypes = {
@@ -27,6 +28,7 @@ export class Post extends Component {
       <div>
         <PostItem post={post} showActions={false} />
         <CommentForm postId={post._id} />
+        <CommentFeed postId={post._id} comments={post.comments} />
       </div>
     )
 

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import isEmpty from '../../../store/utils/isEmpty'
+import isEmpty from '../../../utils/isEmpty'
 
 export class ProfileItem extends Component {
   render() {

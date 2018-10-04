@@ -1,5 +1,5 @@
 import React from 'react'
-import isEmpty from '../../../store/utils/isEmpty'
+import isEmpty from '../../../utils/isEmpty'
 
 const ProfileHeader = ({ profile }) => {
   return (
