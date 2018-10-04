@@ -71,7 +71,7 @@ class App extends Component {
         <Switch>
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/posts" component={Posts} />
-          <Route path="/posts/:id" component={Post} />
+          <Route path="/post/:id" component={Post} />
           <Route path="/profiles" component={Profiles} />
           <Route path="/profile/:handle" component={Profile} />
           <Route path="/create-profile" component={CreateProfile} />
