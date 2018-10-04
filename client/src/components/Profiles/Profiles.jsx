@@ -57,7 +57,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onGetProfiles: () => dispatch(actions.getProfilesInit())
+  onGetProfiles: () => dispatch(actions.getProfiles())
 })
 
 export default connect(

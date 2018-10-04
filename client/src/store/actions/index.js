@@ -15,7 +15,7 @@ export {
     addEducation,
     deleteEducation,
     deleteProfile,
-    getProfilesInit
+    getProfiles
 } from './profileActions'
 
 export {

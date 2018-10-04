@@ -10,10 +10,12 @@ export const setPostLoading = () => ({
 
 //add post
 export const addPost = post => dispatch => {
-  dispatch(clearErrors())
   axios
     .post('/api/posts', post)
-    .then(res => dispatch(getPosts()))
+    .then(res => {
+      dispatch(getPosts())
+      dispatch(clearErrors())
+    })
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
@@ -78,13 +80,17 @@ export const removeLike = postId => dispatch => {
 export const addComment = (postId, comment) => dispatch => {
   axios
     .post(`/api/posts/comment/${postId}`, comment)
-    .then(res => dispatch(getPost(postId)))
+    .then(res => {
+      dispatch(getPost(postId))
+      dispatch(clearErrors())
+    })
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
 //delete comment
 export const deleteComment = (postId, commentId) => dispatch => {
-  axios.delete(`/api/posts/comment/${postId}/${commentId}`)
+  axios
+    .delete(`/api/posts/comment/${postId}/${commentId}`)
     .then(res => dispatch(getPost(postId)))
-    .catch(err =>dispatch(getErrors(err.response.data)))
+    .catch(err => dispatch(getErrors(err.response.data)))
 }

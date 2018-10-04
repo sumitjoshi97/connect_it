@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as actionTypes from './actionTypes'
 import { setCurrentUser, getErrors } from './index'
+import { clearErrors } from './index'
 
 //////////////////////////////////////
 //PROFILE ROUTES
@@ -28,7 +29,8 @@ export const getCurrentProfile = () => dispatch => {
 //get profile by handle
 export const getProfileByHandle = handle => dispatch => {
   dispatch(setProfileLoading())
-  axios.get(`/api/profile/handle/${handle}`)
+  axios
+    .get(`/api/profile/handle/${handle}`)
     .then(res => dispatch(getProfile(res.data)))
     .catch(err => getProfile(null))
 }
@@ -42,7 +44,10 @@ export const clearCurrentProfile = () => ({
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post('/api/profile', profileData)
-    .then(res => history.push('/dashboard'))
+    .then(res => {
+      dispatch(clearErrors())
+      history.push('/dashboard')
+    })
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
@@ -62,7 +67,10 @@ export const deleteProfile = () => dispatch => {
 export const addExperience = (expData, history) => dispatch => {
   axios
     .post('/api/profile/experience', expData)
-    .then(res => history.push('/dashboard'))
+    .then(res => {
+      history.push('/dashboard')
+      dispatch(clearErrors())
+    })
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
@@ -81,7 +89,10 @@ export const deleteExperience = exp_id => dispatch => {
 export const addEducation = (eduData, history) => dispatch => {
   axios
     .post('/api/profile/education', eduData)
-    .then(res => history.push('/dashboard'))
+    .then(res => {
+      history.push('/dashboard')
+      dispatch(clearErrors())
+    })
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
@@ -97,15 +108,15 @@ export const deleteEducation = edu_id => dispatch => {
 //ALL PROFILES routes
 
 // Get all profiles
-export const getProfiles = profiles => ({
-  type: actionTypes.GET_PROFILES,
-  profiles
-})
-
-export const getProfilesInit = () => dispatch => {
+export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading())
   axios
     .get('/api/profile/all')
-    .then(res => dispatch(getProfiles(res.data)))
+    .then(res =>
+      dispatch({
+        type: actionTypes.GET_PROFILES,
+        profiles: res.data
+      })
+    )
     .catch(err => dispatch(getProfiles(null)))
 }
