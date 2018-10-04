@@ -2,8 +2,7 @@ export {
     registerUser,
     loginUser,
     setCurrentUser,
-    logoutUser,
-    getErrors
+    logoutUser
 } from './authActions'
 
 export {
@@ -22,5 +21,13 @@ export {
 export {
     addPost,
     getPosts,
-    deletePost
+    getPost,
+    deletePost,
+    addLike,
+    removeLike
 } from './postActions'
+
+export {
+    getErrors,
+    clearErrors
+} from './errorActions'
