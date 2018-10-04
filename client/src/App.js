@@ -1,33 +1,137 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import jwt_decode from 'jwt-decode'
+import Loadable from 'react-loadable'
 
 // importing actions
 import * as actions from './store/actions/index'
 
 // importing files
 import './App.css'
+import Spinner from './components/Common/Spinner/Spinner'
 import Header from './components/Layout/Header/Header'
-import Landing from './components/Layout/Landing/Landing'
 import Footer from './components/Layout/Footer/Footer'
-import Register from './components/Auth/Register/Register'
-import Login from './components/Auth/Login/Login'
-import Profile from './components/Profile/Profile'
-import Profiles from './components/Profiles/Profiles'
-import CreateProfile from './components/Dashboard/CreateProfile/CreateProfile'
-import EditProfile from './components/Dashboard/EditProfile/EditProfile'
 import setAuthToken from './utils/setAuthToken'
-import Dashboard from './components/Dashboard/Dashboard'
-import AddExperience from './components/AddCredentials/AddExperience/AddExperience'
-import AddEducation from './components/AddCredentials/AddEducation/AddEducation'
-import Posts from './components/Posts/Posts'
-import Post from './components/Post/Post'
+
 import store from './store/store'
+import jwt_decode from 'jwt-decode'
+import {
+  setCurrentUser,
+  logoutUser,
+  clearCurrentProfile
+} from './store/actions/index'
 
-import { setCurrentUser,logoutUser,clearCurrentProfile } from './store/actions/index'
+// loading component async
+const Landing = Loadable({
+  loader: () => import('./components/Layout/Landing/Landing'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
 
+const Register = Loadable({
+  loader: () => import('./components/Auth/Register/Register'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
 
+const Login = Loadable({
+  loader: () => import('./components/Auth/Login/Login'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
+
+const Profile = Loadable({
+  loader: () => import('./components/Profile/Profile'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
+
+const Profiles = Loadable({
+  loader: () => import('./components/Profiles/Profiles'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
+
+const CreateProfile = Loadable({
+  loader: () => import('./components/Dashboard/CreateProfile/CreateProfile'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
+
+const EditProfile = Loadable({
+  loader: () => import('./components/Dashboard/EditProfile/EditProfile'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
+
+const Dashboard = Loadable({
+  loader: () => import('./components/Dashboard/Dashboard'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
+
+const AddExperience = Loadable({
+  loader: () =>
+    import('./components/AddCredentials/AddExperience/AddExperience'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
+
+const AddEducation = Loadable({
+  loader: () => import('./components/AddCredentials/AddEducation/AddEducation'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
+
+const Posts = Loadable({
+  loader: () => import('./components/Posts/Posts'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
+
+const Post = Loadable({
+  loader: () => import('./components/Post/Post'),
+  loading: () => (
+    <div>
+      <Spinner />
+    </div>
+  )
+})
+
+// check for token in localstorage
 if (localStorage.jwtToken) {
   // set auth token
   setAuthToken(localStorage.jwtToken)
@@ -50,10 +154,6 @@ if (localStorage.jwtToken) {
 
 // app component
 class App extends Component {
-  componentDidMount() {
-    // check for token
-  }
-
   render() {
     // routes for users that are not logged in
     let routes = (
@@ -99,17 +199,5 @@ class App extends Component {
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuthenticated
 })
-
-const mapDispatchToProps = dispatch => ({
-  onSetCurrentUser: user => dispatch(actions.setCurrentUser(user)),
-  onLogoutUser: () => dispatch(actions.logoutUser()),
-  onClearCurrentProfile: () => dispatch(actions.clearCurrentProfile())
-})
-
 // export app wrapped in redux store
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
-)
+export default withRouter(connect(mapStateToProps)(App))
