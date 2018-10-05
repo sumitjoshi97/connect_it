@@ -42,18 +42,6 @@ export class ProfileGithub extends Component {
               </h5>
               <p>{repo.description}</p>
             </div>
-
-            <div className="col-md-6">
-              <span className="badge badge-info ml-2 mr-2">
-                Stars: {repos.stargazers_count}
-              </span>
-              <span className="badge badge-secondary mr-2">
-                Watchers: {repos.watchers_count}
-              </span>
-              <span className="badge badge-success">
-                Forks: {repos.forks_count}
-              </span>
-            </div>
           </div>
         </div>
       ))

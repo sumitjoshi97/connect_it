@@ -121,7 +121,7 @@ router.post(
       // return any errors with 400 status
       return res.status(400).send(errors)
     }
-
+    
     //get fields
     const profileFields = {}
     profileFields.user = req.user.id
@@ -147,6 +147,7 @@ router.post(
     if (req.body.facebook) profileFields.social.facebook = req.body.facebook
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram
 
+    // find a profile with user id
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
         //update the existed profile
@@ -164,7 +165,7 @@ router.post(
             errors.handle = 'the handle already exists'
             res.status(400).json(errors)
           }
-
+          
           // save profile if not exists
           new Profile(profileFields).save().then(profile => res.json(profile))
         })

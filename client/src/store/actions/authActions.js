@@ -11,19 +11,18 @@ import { getErrors, clearErrors } from './index'
 
 // register user
 export const registerUser = (data, history) => dispatch => {
+  // clear error state
+  dispatch(clearErrors())
   axios
     .post('/api/users/register', data)
-    .then(res => {
-      // clear error state
-      dispatch(clearErrors())
-      // redirect route to login
-      history.push('/login')
-    })
+    .then(res => history.push('/login'))
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
-// login get user token
+// login and get user token
 export const loginUser = data => dispatch => {
+  // clears error state
+  dispatch(clearErrors())
   axios
     .post('/api/users/login', data)
     .then(res => {
@@ -39,7 +38,7 @@ export const loginUser = data => dispatch => {
       // dispatch action to set current user
       dispatch(setCurrentUser(decoded))
       // clear error state
-      dispatch(clearErrors())
+      
     })
     .catch(error => dispatch(getErrors(error.response.data)))
 }

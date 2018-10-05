@@ -60,6 +60,7 @@ class CreateProfile extends Component {
   componentDidMount() {
     this.props.onGetCurrentProfile()
   }
+
   static getDerivedStateFromProps(nextProps, prevState) {
     // update errors store if errors props from redux store are different
     if (nextProps.errors !== prevState.errors) {

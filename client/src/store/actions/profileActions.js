@@ -1,7 +1,6 @@
 import axios from 'axios'
 import * as actionTypes from './actionTypes'
-import { setCurrentUser, getErrors } from './index'
-import { clearErrors } from './index'
+import { setCurrentUser, getErrors, clearErrors } from './index'
 
 //////////////////////////////////////
 //PROFILE ROUTES
@@ -42,12 +41,10 @@ export const clearCurrentProfile = () => ({
 
 // create profile
 export const createProfile = (profileData, history) => dispatch => {
+  dispatch(clearErrors())
   axios
     .post('/api/profile', profileData)
-    .then(res => {
-      dispatch(clearErrors())
-      history.push('/dashboard')
-    })
+    .then(res => history.push('/dashboard'))
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
@@ -65,12 +62,10 @@ export const deleteProfile = () => dispatch => {
 
 // adds experience to user profile
 export const addExperience = (expData, history) => dispatch => {
+  dispatch(clearErrors())
   axios
     .post('/api/profile/experience', expData)
-    .then(res => {
-      history.push('/dashboard')
-      dispatch(clearErrors())
-    })
+    .then(res => history.push('/dashboard'))
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
@@ -87,12 +82,10 @@ export const deleteExperience = exp_id => dispatch => {
 
 // adds education to user profile
 export const addEducation = (eduData, history) => dispatch => {
+  dispatch(clearErrors())
   axios
     .post('/api/profile/education', eduData)
-    .then(res => {
-      history.push('/dashboard')
-      dispatch(clearErrors())
-    })
+    .then(res => history.push('/dashboard'))
     .catch(err => dispatch(getErrors(err.response.data)))
 }
 
