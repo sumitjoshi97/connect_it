@@ -1,0 +1,36 @@
+@import "./variables.scss";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.btn-hero {
+  background: $primary-light;
+  color: $white-light;
+}
+
+.btn-hero:hover {
+  color: $white-light;
+}
+
+.btn-shadow {
+  box-shadow: $shadow-small;
+  transition: all 0.4s linear;
+}
+
+.btn-shadow:hover {
+  transform: translateY(-1px);
+  box-shadow: $shadow-large;
+}
+
+.btn-white {
+  background: $white-light;
+  color: $primary-dark;
+}
+
+.btn-white:hover {
+  background: $white-light;
+  color: $primary-dark;
+}
