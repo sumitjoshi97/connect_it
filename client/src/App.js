@@ -17,6 +17,10 @@ import {
   clearCurrentProfile
 } from './store/actions/index'
 
+import './App.css'
+import './sass/utilities.scss'
+import './sass/components.scss'
+
 // loading component async
 const Landing = Loadable({
   loader: () => import('./components/Layout/Landing/Landing'),
