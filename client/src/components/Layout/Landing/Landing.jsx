@@ -15,21 +15,26 @@ class Landing extends Component {
     return (
       <div className="landing">
         {redirectRoute}
-        <div className="dark-overlay landing-inner text-light">
+        <div className="dark-overlay landing-inner">
           <div className="container">
             <div className="row">
-              <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Developer Connector</h1>
+              <div className="col-md-12 text-center font-purple">
+                <h2 className="display-3 mb-4 text-uppercase font-weight-bold">
+                  Dev Connect
+                </h2>
                 <p className="lead">
                   {' '}
                   Create a developer profile/portfolio, share posts and get help
                   from other developers
                 </p>
                 <hr />
-                <Link to="/register" className="btn btn-lg btn-info mr-2">
+                <Link
+                  to="/register"
+                  className="btn btn-lg mr-2 btn-hero btn-shadow"
+                >
                   Sign Up
                 </Link>
-                <Link to="/login" className="btn btn-lg btn-light">
+                <Link to="/login" className="btn btn-lg btn-white btn-shadow">
                   Login
                 </Link>
               </div>

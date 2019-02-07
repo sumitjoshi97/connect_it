@@ -77,7 +77,10 @@ export class Login extends Component {
                   error={errors.password}
                 />
 
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input
+                  type="submit"
+                  className="btn btn-lg btn-block mt-4 btn-hero"
+                />
               </form>
             </div>
           </div>

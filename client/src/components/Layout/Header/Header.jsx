@@ -71,7 +71,7 @@ class Header extends Component {
 
     // return header component to render
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+      <nav className="navbar navbar-expand-sm navbar-dark mb-4 back-purple header">
         <div className="container">
           <Link className="navbar-brand" to="/">
             DevConnect
@@ -80,7 +80,8 @@ class Header extends Component {
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#mobile-nav">
+            data-target="#mobile-nav"
+          >
             <span className="navbar-toggler-icon" />
           </button>
 
