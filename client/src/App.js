@@ -183,9 +183,9 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+      <div className="app">
         <Header />
-        {routes}
+        <div style={{ flex: 1 }}>{routes}</div>
         <Footer />
       </div>
     )
