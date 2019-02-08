@@ -7,7 +7,7 @@
 }
 
 .btn-hero {
-  background: $primary-light;
+  background: $primary-dark;
   color: $white-light;
 }
 
@@ -16,6 +16,7 @@
 }
 
 .btn-shadow {
+  font-size: 1.6rem !important;
   box-shadow: $shadow-small;
   transition: all 0.4s linear;
 }
