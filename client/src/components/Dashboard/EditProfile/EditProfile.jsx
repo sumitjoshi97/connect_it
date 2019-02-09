@@ -35,7 +35,7 @@ class EditProfile extends Component {
 
     if (this.props.profile) {
       let profile = this.props.profile
-      
+
       // join skills array back to comma separated string
       let skillsCSV = profile.skills.join(',')
 
@@ -137,11 +137,13 @@ class EditProfile extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-light">
+              <Link to="/dashboard" className="btn btn-white btn-shadow">
                 Go Back
               </Link>
-              <h1 className="display-4 text-center">Edit your Profile</h1>
-              <p className="lead text-center">
+              <h1 className="display-4 text-center font-purple">
+                Edit your Profile
+              </h1>
+              <p className="lead text-center font-purple">
                 Add some info to make your profile stand out
               </p>
               <form onSubmit={this.onSubmit}>
@@ -215,7 +217,8 @@ class EditProfile extends Component {
                         displaySocialInput: !prevState.displaySocialInput
                       }))
                     }}
-                    className="btn btn-secondary">
+                    className="btn btn-white btn-shadow"
+                  >
                     Add social links
                   </button>
                   <span className="text-muted"> Optional</span>
@@ -270,7 +273,7 @@ class EditProfile extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
+                  className="btn btn-hero btn-shadow btn-block btn-lg mt-4"
                 />
               </form>
             </div>

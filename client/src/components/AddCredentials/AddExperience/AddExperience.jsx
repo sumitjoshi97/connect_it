@@ -66,10 +66,12 @@ class AddExperience extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-secondary">
+              <Link to="/dashboard" className="btn btn-white btn-shadow">
                 Go back
               </Link>
-              <h1 className="display-4 text-center">Add Experience</h1>
+              <h1 className="display-4 text-center font-purple">
+                Add Experience
+              </h1>
               <small className="d-block pb-3">* required fields</small>
               <form onSubmit={this.onSubmit}>
                 <Input
@@ -132,7 +134,7 @@ class AddExperience extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
+                  className="btn btn-hero btn-shadow btn-block btn-lg mt-4"
                 />
               </form>
             </div>

@@ -31,7 +31,8 @@ class Profile extends Component {
             <div className="col-6">
               <Link
                 to="/dashboard"
-                className="btn btn-secondary mb-3 float-left">
+                className="btn btn-white btn-shadow mb-4 float-left"
+              >
                 Go Back
               </Link>
             </div>

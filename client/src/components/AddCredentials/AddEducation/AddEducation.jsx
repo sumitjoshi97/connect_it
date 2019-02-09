@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import Input from '../../Common/Input/Input'
 import TextArea from '../../Common/Input/TextArea'
 
-// import actions 
+// import actions
 import * as actions from '../../../store/actions/index'
 
 class AddEducation extends Component {
@@ -69,10 +69,12 @@ class AddEducation extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-secondary">
+              <Link to="/dashboard" className="btn btn-white btn-shadow">
                 Go back
               </Link>
-              <h1 className="display-4 text-center">Add Education</h1>
+              <h1 className="display-4 text-center font-purple">
+                Add Education
+              </h1>
               <small className="d-block pb-3">* required fields</small>
               <form onSubmit={this.onSubmit}>
                 <Input
@@ -142,7 +144,7 @@ class AddEducation extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
+                  className="btn btn-hero btn-shadow btn-block btn-lg mt-4"
                 />
               </form>
             </div>

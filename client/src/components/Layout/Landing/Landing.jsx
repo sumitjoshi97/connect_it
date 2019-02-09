@@ -15,14 +15,14 @@ class Landing extends Component {
     return (
       <div className="landing">
         {redirectRoute}
-        <div className="dark-overlay landing-inner">
+        <div className="landing-inner">
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center font-purple">
-                <h2 className="display-3 mb-4 text-uppercase font-weight-bold">
+                <h2 className="display-2 mb-4 text-uppercase font-weight-bold">
                   Dev Connect
                 </h2>
-                <p className="lead">
+                <p>
                   {' '}
                   Create a developer profile/portfolio, share posts and get help
                   from other developers

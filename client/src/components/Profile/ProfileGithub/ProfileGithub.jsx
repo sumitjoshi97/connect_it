@@ -16,9 +16,9 @@ export class ProfileGithub extends Component {
     )
       .then(res => res.json())
       .then(data => {
-        if(this.repo) {
-        this.setState({ repos: data })
-         }
+        if (this.repo) {
+          this.setState({ repos: data })
+        }
       })
       .catch(err => console.log(err))
   }
@@ -31,16 +31,18 @@ export class ProfileGithub extends Component {
         <div key={repo.id} className="card card_body mb-2">
           <div className="row">
             <div className="col-md-6">
-              <h5>
+              <h4>
                 <a
                   href={repo.html_url}
-                  className="text-dark m-2 pt-2"
-                  target="_blank">
+                  className="font-purple m-2 pt-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {' '}
                   {repo.name}
                 </a>
-              </h5>
-              <p>{repo.description}</p>
+              </h4>
+              <p className="m-2">{repo.description}</p>
             </div>
           </div>
         </div>
@@ -48,9 +50,9 @@ export class ProfileGithub extends Component {
     }
 
     return (
-      <div ref={repo => this.repo = repo}>
+      <div ref={repo => (this.repo = repo)}>
         <hr />
-        <h3 className="mb-4 text-info">Latest Github Repos</h3>
+        <h3 className="mb-4 font-purple">Latest Github Repos</h3>
         {repoList}
       </div>
     )

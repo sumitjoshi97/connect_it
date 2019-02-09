@@ -41,7 +41,7 @@ export class Post extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <Link to="/posts" className="btn btn-light">
+              <Link to="/posts" className="btn btn-white btn-shadow mb-2">
                 Back
               </Link>
               <div>{postContent}</div>

@@ -21,7 +21,8 @@ export class Experience extends Component {
         <td>
           <button
             onClick={() => this.props.onDeleteExperience(exp._id)}
-            className="btn btn-danger">
+            className="btn btn-danger btn-shadow"
+          >
             Delete
           </button>
         </td>

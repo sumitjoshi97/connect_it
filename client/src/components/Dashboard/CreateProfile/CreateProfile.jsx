@@ -161,7 +161,8 @@ class CreateProfile extends Component {
                         displaySocialInput: !prevState.displaySocialInput
                       }))
                     }}
-                    className="btn btn-secondary">
+                    className="btn btn-white btn-shadow"
+                  >
                     Add social links
                   </button>
                   <span className="text-muted"> Optional</span>
@@ -213,7 +214,10 @@ class CreateProfile extends Component {
                   </Fragment>
                 )}
 
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input
+                  type="submit"
+                  className="btn btn-hero btn-shadow btn-block btn-lg mt-4"
+                />
               </form>
             </div>
           </div>

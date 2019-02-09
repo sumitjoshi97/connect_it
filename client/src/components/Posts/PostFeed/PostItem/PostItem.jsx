@@ -16,9 +16,9 @@ export class PostItem extends Component {
   render() {
     const { post, user, showActions, onAddLike, onRemoveLike } = this.props
     return (
-      <div className="card card-body mb-3">
+      <div className="card card-body mb-4">
         <div className="row">
-          <div className="col-md-2">
+          <div className="col-md-1">
             <Link to={`/profile/${post.user}`}>
               <img
                 className="rounded-circle d-none d-md-block"
@@ -37,25 +37,31 @@ export class PostItem extends Component {
               <div>
                 <button
                   type="button"
-                  className="btn btn-light mr-1"
-                  onClick={() => onAddLike(post._id)}>
-                  <i className="text-info fas fa-thumbs-up" />
+                  className="btn btn-white mr-2"
+                  onClick={() => onAddLike(post._id)}
+                >
+                  <i className="fas fa-thumbs-up" />
                   <span className="badge badge-light">{post.likes.length}</span>
                 </button>
                 <button
                   type="button"
-                  className="btn btn-light mr-1"
-                  onClick={() => onRemoveLike(post._id)}>
+                  className="btn btn-white mr-2"
+                  onClick={() => onRemoveLike(post._id)}
+                >
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
-                <Link to={`post/${post._id}`} className="btn btn-info mr-1">
+                <Link
+                  to={`post/${post._id}`}
+                  className="btn btn-hero btn-shadow mr-1"
+                >
                   Comments
                 </Link>
                 {post.user === user.id && (
                   <button
                     type="button"
                     onClick={() => this.props.onDeletePost(post._id)}
-                    className="btn btn-danger mr-1">
+                    className="btn btn-danger mr-1"
+                  >
                     <i className="fas fa-times" />
                   </button>
                 )}

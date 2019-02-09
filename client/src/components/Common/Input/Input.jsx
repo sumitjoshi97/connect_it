@@ -16,7 +16,7 @@ const Input = ({
   <div className="form-group">
     <input
       type={type}
-      className={classnames('form-control form-control-lg', {
+      className={classnames('form-control form-control-lg mb-3', {
         'is-invalid': error
       })}
       placeholder={placeholder}
@@ -31,18 +31,18 @@ const Input = ({
 )
 
 Input.propTypes = {
-    name: PropTypes.string.isRequired,
-    placeholder: PropTypes.string,
-    value: PropTypes.string.isRequired,
-    info: PropTypes.string,
-    error: PropTypes.string,
-    type: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    disabled: PropTypes.string
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  info: PropTypes.string,
+  error: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.string
 }
 
 Input.defaultProps = {
-    type: 'text'
+  type: 'text'
 }
 
 export default Input

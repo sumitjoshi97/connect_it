@@ -54,9 +54,9 @@ export class Login extends Component {
       <div className="login">
         <div className="container">
           <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">
+            <div className="col-md-6 m-auto">
+              <h1 className="display-4 text-center font-purple">Log In</h1>
+              <p className="text-center mb-4 font-purple">
                 Sign in to your DevConnector account
               </p>
               <form onSubmit={this.onSubmit}>
@@ -79,7 +79,7 @@ export class Login extends Component {
 
                 <input
                   type="submit"
-                  className="btn btn-lg btn-block mt-4 btn-hero"
+                  className="btn btn-lg btn-block mt-4 btn-hero btn-shadow"
                 />
               </form>
             </div>

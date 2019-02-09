@@ -16,7 +16,7 @@ export class CommentItem extends PureComponent {
     return (
       <div className="card card-body mb-3">
         <div className="row">
-          <div className="col-md-2">
+          <div className="col-md-1">
             <a href="profile.html">
               <img
                 className="rounded-circle d-none d-md-block"
@@ -35,12 +35,12 @@ export class CommentItem extends PureComponent {
               <button
                 onClick={() => onDeleteComment(postId, comment._id)}
                 type="button"
-                className="btn btn-danger mr-1">
+                className="btn btn-danger mr-1"
+              >
                 {' '}
                 <i className="fas fa-times" />{' '}
               </button>
             )}
-            
           </div>
         </div>
       </div>
@@ -49,12 +49,12 @@ export class CommentItem extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
-
+  user: state.auth.user
 })
 
 const mapDispatchToProps = dispatch => ({
-  onDeleteComment: (postId, commentId) => dispatch(actions.deleteComment(postId, commentId))
+  onDeleteComment: (postId, commentId) =>
+    dispatch(actions.deleteComment(postId, commentId))
 })
 
 export default connect(

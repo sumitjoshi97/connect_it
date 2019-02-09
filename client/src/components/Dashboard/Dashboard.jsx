@@ -38,8 +38,9 @@ class Dashboard extends Component {
             <Experience experience={profile.experience} />
             <div style={{ marginBottom: '60px' }} />
             <button
-              className="btn btn-danger"
-              onClick={this.props.onDeleteProfile}>
+              className="btn btn-danger btn-shadow"
+              onClick={this.props.onDeleteProfile}
+            >
               Delete account{' '}
             </button>
           </div>
@@ -50,7 +51,7 @@ class Dashboard extends Component {
           <div>
             <p className="lead text-muted">Welcome {user.name}</p>
             <p>You have not setup a profile yet, please add some info</p>
-            <Link to="/create-profile" className="btn btn-primary">
+            <Link to="/create-profile" className="btn btn-hero btn-shadow">
               Create Profile
             </Link>
           </div>
@@ -63,7 +64,7 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
+              <h1 className="display-4 font-purple">Dashboard</h1>
               {dashboardContent}
             </div>
           </div>
