@@ -25,10 +25,10 @@ export class CommentItem extends PureComponent {
               />
             </a>
             <br />
-            <p className="text-center">{comment.name}</p>
+            <p className="lead text-center">{comment.name}</p>
           </div>
           <div className="col-md-10">
-            <p className="lead">{comment.text}</p>
+            <p>{comment.text}</p>
 
             {/* show delete button if comment user is logged user */}
             {comment.user === user.id && (

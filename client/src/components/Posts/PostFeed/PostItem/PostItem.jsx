@@ -27,10 +27,10 @@ export class PostItem extends Component {
               />
             </Link>
             <br />
-            <p className="text-center">{post.name}</p>
+            <p className="lead text-center">{post.name}</p>
           </div>
           <div className="col-md-10">
-            <p className="lead">{post.text}</p>
+            <p>{post.text}</p>
 
             {/* buttons shows when auth is true */}
             {showActions && (
@@ -50,6 +50,7 @@ export class PostItem extends Component {
                 >
                   <i className="text-secondary fas fa-thumbs-down" />
                 </button>
+                <br />
                 <Link
                   to={`post/${post._id}`}
                   className="btn btn-hero btn-shadow mr-1"
