@@ -55,7 +55,10 @@ class Header extends Component {
             </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" onClick={this.onLogoutClick}>
+            <button
+              className="nav-link btn btn-hero "
+              onClick={this.onLogoutClick}
+            >
               <img
                 src={user.avatar}
                 alt={user.name}
@@ -63,7 +66,7 @@ class Header extends Component {
                 title="you must have a gravatar connected to your email to display an image"
               />
               Logout
-            </a>
+            </button>
           </li>
         </ul>
       </Fragment>
