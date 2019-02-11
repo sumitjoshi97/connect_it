@@ -16,7 +16,7 @@ export class CommentItem extends PureComponent {
     return (
       <div className="card card-body mb-3">
         <div className="row">
-          <div className="col-md-1">
+          <div className="col-md-2 col-lg-1">
             <a href="profile.html">
               <img
                 className="rounded-circle d-none d-md-block"
