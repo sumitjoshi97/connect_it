@@ -4,7 +4,7 @@ import CommentItem from './CommentItem/Commentitem'
 
 export class CommentFeed extends Component {
   static propTypes = {
-    comments: PropTypes.arrray,
+    comments: PropTypes.arrrayOf(PropTypes.object),
     postId: PropTypes.string
   }
 
