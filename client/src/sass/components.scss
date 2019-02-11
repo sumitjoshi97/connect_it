@@ -1,14 +1,13 @@
 @import "./variables.scss";
 
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
+  display: block !important;
 }
 
 .btn-hero {
   background: $primary-dark;
   color: $white-light;
+  font-size: 1.6rem !important;
 }
 
 .btn-hero:hover {
