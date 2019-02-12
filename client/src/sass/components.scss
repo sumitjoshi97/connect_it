@@ -21,7 +21,7 @@
 }
 
 .btn-shadow:hover {
-  transform: translateY(-1px);
+  transform: translate3d(0, -1px, 0);
   box-shadow: $shadow-large;
 }
 
